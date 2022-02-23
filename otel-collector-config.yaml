@@ -17,6 +17,18 @@ exporters:
 
 processors:
   batch:
+  tail_sampling:
+    ##decision_wait: 10s
+    ##num_traces: 100
+    ##expected_new_traces_per_sec: 100
+    policies:
+      [
+          {
+            name: test-policy-5,
+            type: status_code,
+            status_code: {status_codes: [ERROR]}
+          }
+      ]
 
 extensions:
   health_check:
@@ -34,7 +46,7 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
+      processors: [tail_sampling]
       exporters: [jaeger]
     metrics:
       receivers: [otlp]
