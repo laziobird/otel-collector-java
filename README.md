@@ -54,7 +54,7 @@ services:
 ```
 <a name="T6DHp"></a>
 ## 采样 Sampling
-只上报异常链路采样Demo
+只上报异常链路采样Demo：http://106.14.209.9:8080/error 错误URL示例
 ```yaml
 processors:
   batch:
