@@ -53,6 +53,32 @@ services:
             - jaeger
 ```
 <a name="T6DHp"></a>
+## 采样 Sampling
+只上报异常链路采样Demo
+```yaml
+processors:
+  batch:
+  tail_sampling:
+    ##decision_wait: 10s
+    ##num_traces: 100
+    ##expected_new_traces_per_sec: 100
+    policies:
+      [
+          {
+            name: test-policy-5,
+            type: status_code,
+            status_code: {status_codes: [ERROR]}
+          }
+      ]
+service:
+  extensions: [pprof,health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [tail_sampling]
+      exporters: [jaeger]
+```
+<a name="T6DHp"></a> 
 ## Documentation
 [https://github.com/open-telemetry/opentelemetry-java-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation)<br />[https://www.jaegertracing.io/docs/1.29/getting-started/](https://www.jaegertracing.io/docs/1.29/getting-started/)<br />[https://opentelemetry.io/docs/](https://opentelemetry.io/docs/)<br />[https://github.com/open-telemetry/opentelemetry-java](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-both-span-and-metric-exporters)<br />[https://github.com/open-telemetry/opentelemetry-collector](https://github.com/open-telemetry/opentelemetry-collector)
 ## 联系
