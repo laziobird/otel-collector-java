@@ -41,6 +41,11 @@
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-extension-annotations</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-exporter-jaeger</artifactId>
+        </dependency>
 		<!--    Trace 的数据约定 -->
         <dependency>
             <groupId>io.opentelemetry</groupId>

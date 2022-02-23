@@ -113,6 +113,15 @@ public class SpanController extends BaseController {
 		return "this is resource baggage " + baggage;
 	}
 
+	@GetMapping("/error")
+	@ResponseBody
+	public String error() {
+		Span spanCur = Span.current();
+		spanCur.setAttribute("springboot.error", "yes");
+		return "this is springboot error request ";
+	}	
+	
+	
 	/**
 	 * 身份认证服务demo
 	 * 
