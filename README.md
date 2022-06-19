@@ -54,7 +54,7 @@ services:
 ```
 <a name="T6DHp"></a>
 ## 采样 Sampling
-只上报异常链路采样Demo：http://106.14.209.9:8080/error 错误URL示例
+只上报异常链路采样Demo
 ```yaml
 processors:
   batch:
@@ -78,6 +78,11 @@ service:
       processors: [tail_sampling]
       exporters: [jaeger]
 ```
+### 采样的效果
+- 采样前
+ ![image.png](./assets/sampling-pre.png)
+- 采样后: Processor 处理器添加了尾部取样 `processors: [tail_sampling]`
+ ![image.png](./assets/sampling.png)
 <a name="T6DHp"></a> 
 ## Documentation
 [https://github.com/open-telemetry/opentelemetry-java-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation)<br />[https://www.jaegertracing.io/docs/1.29/getting-started/](https://www.jaegertracing.io/docs/1.29/getting-started/)<br />[https://opentelemetry.io/docs/](https://opentelemetry.io/docs/)<br />[https://github.com/open-telemetry/opentelemetry-java](https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md#otlp-exporter-both-span-and-metric-exporters)<br />[https://github.com/open-telemetry/opentelemetry-collector](https://github.com/open-telemetry/opentelemetry-collector)<br />[opentelemetry-collector tailsamplingprocessor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/tailsamplingprocessor)
