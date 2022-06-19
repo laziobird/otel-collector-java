@@ -30,8 +30,8 @@ OpenTelemetry Collector+Jaeger+Prometheus的可观测演示案例
 <a name="tfZIA"></a>
 ## Compiling project
 <a name="KDdV7"></a>
+
 ### Linux
-  - 下载最新opentelemetry-javaagent.jar [官方](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tags) , 在Dockerfile同目录下命名为opentelemetry-javaagent.jar，具体看Dockerfile配置
   - Docker 环境，三个服务部署在一台服务器上，网络Host模式
 ```shell
 ## down
