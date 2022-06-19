@@ -1,5 +1,5 @@
 <a name="wSh88"></a>
-# opentelemetry-jaeger-prometheus
+# OpenTelemetry Collector Demo
 <a name="XGdFY"></a>
 ## Introduction
 OpenTelemetry Collector+Jaeger+Prometheus的可观测演示案例
@@ -30,7 +30,19 @@ OpenTelemetry Collector+Jaeger+Prometheus的可观测演示案例
 <a name="tfZIA"></a>
 ## Compiling project
 <a name="KDdV7"></a>
-
+### Maven 编译Java 程序
+```shell
+mvn package -DskipTests=true
+```
+  - target下把对应jar包重命名`otel.jar`，放到`Dockerfile`文件同级目录
+  - Docker默认网络方式是`Host`模式、将Spring Boot 的配置文件`otel-collector-java/src/main/resources/application-test.yml` 的 `host` 设置成你的内网 IP，方便Jaeger、Prometheus识别
+```yml
+trace:
+  exporter:
+    host: 10.10.226.31
+    port: 14250
+    uiPort: 16686
+```
 ### Linux
   - Docker 环境，三个服务部署在一台服务器上，网络Host模式
 ```shell
