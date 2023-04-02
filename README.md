@@ -2,9 +2,9 @@
 # OpenTelemetry Collector Demo
 <a name="XGdFY"></a>
 ## Introduction
-OpenTelemetry Collector+Jaeger+Prometheus的可观测演示案例
+OpenTelemetry Collector+Jaeger+Prometheus的可观测案例
 
-- Load Balance ：Nginx
+- Gateway ：Nginx
 - 前端：Java SpringBoot Web + OpenTelemetry +  Jaeger Trace Exporter  + Prometheus Metric Exporter
 - 后端：OpenTelemetry Collector 、Jaeger UI 、Prometheus UI
 
