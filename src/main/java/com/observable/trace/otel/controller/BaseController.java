@@ -27,12 +27,13 @@ public class BaseController {
 	@Autowired
 	public Tracer tracer;
 
-	@Value("${trace.exporter.host}")
-	public String exporterHost;
-	@Value("${trace.exporter.uiPort}")
-	public String exporterUiPort;
-	@Value("${server.port}")
-	public String serverPort;
+	@Value("${trace.jaeger.host}")
+	public String jaegerHost;
+	@Value("${metric.exporter.prometheus.host}")
+	public String prometheusHost;
+
+	@Value("${metric.exporter.prometheus.jvm}")
+	public String jvmMetricHost;
 
 	@Autowired
 	public OpenTelemetry openTelemetry;
@@ -47,7 +48,7 @@ public class BaseController {
 		}
 		logger.info("enter buildTraceUrl");
 		return "<HR style=\"FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)\" color=#987cb9 SIZE=3> <br/>"
-				+ "trace生成成功！查看完整链路图，traceId: <a href='getTrace?traceId=" + traceId + "'>" + traceId + "</a>"
+				+ "trace生成成功！查看完整链路图，traceId: <a href='"+ jaegerHost + "/trace/" + traceId + "'>" + traceId + "</a>"
 				+ "<HR style=\"FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)\" color=#987cb9 SIZE=3> <br/>";
 	}
 }

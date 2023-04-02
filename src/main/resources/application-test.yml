@@ -1,18 +1,27 @@
+spring:
+  application:
+    name: otel-collector-demo
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    encoding: UTF-8 #编码
+    suffix: .html #模板后缀
+    mode: HTML #模板
 server:
   port: 8080
 api:
   url: http://localhost:${server.port}
-spring:
-  application:
-    name: 付款单
-  mvc:
-    view:
-      prefix: /
-      suffix: .html
-extra:
-  host: EXTRA_HOST
 trace:
+  sdk:
+    exporter:
+      host: "127.0.0.1"
+      port: "14250"
+  jaeger:
+    ## 用jaeger拿到链路
+    host: "127.0.0.1:16686"
+metric:
   exporter:
-    host: 106.14.209.9
-    port: 14250
-    uiPort: 16686
+    prometheus:
+      host: "127.0.0.1:9090/targets"
+      jvm: "127.0.0.1:8889/metrics"
+

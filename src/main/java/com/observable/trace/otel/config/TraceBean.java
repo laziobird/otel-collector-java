@@ -37,7 +37,7 @@ public class TraceBean {
     public OpenTelemetry openTelemetry() {
     	// Use Jaeger Exporter
         SpanProcessor spanProcessor = getJaegerGrpcSpanProcessor();
-        Resource serviceNameResource = Resource.create(Attributes.of(ResourceAttributes.SERVICE_NAME, "otelService"));
+        Resource serviceNameResource = Resource.create(Attributes.of(ResourceAttributes.SERVICE_NAME, "sdk链路实例"));
 
         SdkTracerProvider tracerProvider =
                 SdkTracerProvider.builder()

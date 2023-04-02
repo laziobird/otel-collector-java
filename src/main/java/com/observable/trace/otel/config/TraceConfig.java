@@ -8,11 +8,10 @@ import org.springframework.stereotype.Component;
  * @date 2021/12/30
  */
 @Component
-@ConfigurationProperties(prefix = "trace.exporter")
+@ConfigurationProperties(prefix = "trace.sdk.exporter")
 public class TraceConfig {
     private String host;
     private String port;
-    private String uiPort;
 
     public String getHost() {
         return host;
@@ -30,11 +29,4 @@ public class TraceConfig {
         this.port = port;
     }
 
-    public String getUiPort() {
-        return uiPort;
-    }
-
-    public void setUiPort(String uiPort) {
-        this.uiPort = uiPort;
-    }
 }

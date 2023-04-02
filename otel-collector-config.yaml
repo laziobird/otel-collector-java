@@ -8,7 +8,9 @@ exporters:
     endpoint: "0.0.0.0:8889"
     const_labels:
       label1: value1
+  ##设置exporters上报 collector 控制台信息
   logging:
+    loglevel: "debug"
 
   jaeger:
     endpoint: 127.0.0.1:14250
@@ -21,10 +23,11 @@ processors:
     ##decision_wait: 10s
     ##num_traces: 100
     ##expected_new_traces_per_sec: 100
+    ##定义尾部采样规则，只采集http status 返回非200 的链路信息
     policies:
       [
           {
-            name: test-policy-5,
+            name: test-policy-1,
             type: status_code,
             status_code: {status_codes: [ERROR]}
           }
@@ -32,14 +35,8 @@ processors:
 
 extensions:
   health_check:
-    ##endpoint: "127.0.0.1:13134"
-    ##check_collector_pipeline:
-    ##  enabled: true
-    ##  interval: "1m"
-    ##  exporter_failure_threshold: 5
   pprof:
     endpoint: :1888
-
 
 service:
   extensions: [pprof,health_check]
@@ -47,8 +44,12 @@ service:
     traces:
       receivers: [otlp]
       processors: [tail_sampling]
-      exporters: [jaeger]
+      exporters: [jaeger,logging]
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [prometheus]
+      exporters: [prometheus,logging]
+##设置 Collector log level
+  telemetry:
+    logs:
+      level: "info"

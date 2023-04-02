@@ -13,9 +13,8 @@ public class Application {
     }
 
 
-
     @Bean
-    public RestTemplate httpTemplate(){
+    public RestTemplate httpTemplate() {
         return new RestTemplate();
     }
 }

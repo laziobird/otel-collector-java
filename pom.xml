@@ -8,8 +8,8 @@
         <version>2.6.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.tim.observable</groupId>
-    <artifactId>otel</artifactId>
+    <groupId>com.laziobird.observable</groupId>
+    <artifactId>java-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>otel</name>
     <description>Demo project for Spring Boot</description>
@@ -24,11 +24,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-api</artifactId>
@@ -78,5 +80,43 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <!--
+            如果前面mirrorOf配置了central定位到阿里云镜像，这里的central配置可以省略，nexus中找不到会自动根据central去阿里云镜像查找；
+
+            如果上面mirrorOf没有配置central ，这里不配central的话，nexus中找不到会自动去maven默认中央仓库找
+
+        -->
+        <repository>
+            <id>central</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+
+
+    </repositories>
+    <pluginRepositories>
+
+
+        <pluginRepository>
+            <id>central</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
 
 </project>

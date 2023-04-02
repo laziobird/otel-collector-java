@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>opentelemetry demo</title>
+</head>
+<script>
+    function getResource() {
+        var tag = document.getElementById("tag").value;
+        console.log(tag);
+        //href="/resource?tag=getResource"
+        window.location.href="/loadBalancer?tag="+tag;
+    }
+</script>
+<body >
+  <p style="font-size:30px">Collector 可观测Trace Demo</p>
+	<HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+	<br/>
+    打一个Tag，Key是username : <input type="text" placeholder="请输入Tag值" name="tag" id="tag" value="" maxlength="18" size="20" style="height:30px;" /><br />
+    <p><a href="javascript:getResource()" >发起一个付账单请求,生成一个trace</a> </p>
+	<br/>
+	<HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+    <a target="_blank" href="/error">发起一个异常请求,生成一个trace,trace 采样匹配</a> <br />
+    <br/>
+
+    <HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+    <p style="font-size:30px">OpenTelemetry SDK Demo</p>
+    <p><a target="_blank" href="/sdkDemo"> SDK 手动创建Trace 例子  </a> </p>
+
+
+
+    <HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+    <p style="font-size:30px">可观测 OpenTelemetry 数据</p>
+    <p><a target="_blank" th:href="${jaegerHost}">Jeager 控制台  </a> </p>
+    <HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+    <p><a target="_blank" th:href="${prometheusHost}">Prometheus 控制台</a> </p>
+    <HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+    <p><a target="_blank" th:href="${jvmMetricHost}">Jvm 性能指标</a> </p>
+
+</body>
+</html>

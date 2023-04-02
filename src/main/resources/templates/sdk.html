@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>opentelemetry demo</title>
+</head>
+<script>
+    function getResource() {
+        var tag = document.getElementById("tag").value;
+        console.log(tag);
+        //href="/resource?tag=getResource"
+        window.location.href="/loadBalancer?tag="+tag;
+    }
+</script>
+<body >
+  <p style="font-size:30px">Opentelemetry SDK Demo  </p>
+	<HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+	<br/>
+
+    <HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+    <p><a href="/createSpanAndLink">创建 Spans</a> </p>
+    <HR style="FILTER:progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" color=#987cb9 SIZE=3>
+    <p><a href="/event">创建带事件的 Spans</a> </p>
+
+</body>
+</html>

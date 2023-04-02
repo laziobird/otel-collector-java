@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,12 +20,14 @@ import io.opentelemetry.api.trace.StatusCode;
 import io.opentelemetry.context.Context;
 import io.opentelemetry.context.Scope;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 
  * @Title: SpanController.java
  * @Description: TODO
  * @author tim.jiang
- * @date 2021年12月31日
+ * @date 2023年03月31日
  */
 @Controller
 public class SpanController extends BaseController {
@@ -70,9 +73,17 @@ public class SpanController extends BaseController {
 	}
 
 	@GetMapping("/")
-	public String index() {
+	public String index(HttpServletRequest request) {
 		logger.info("enter index");
+		request.setAttribute("jaegerHost",jaegerHost);
+		request.setAttribute("prometheusHost",prometheusHost);
+		request.setAttribute("jvmMetricHost",jvmMetricHost);
 		return "index";
+	}
+
+	@GetMapping("/sdkDemo")
+	public String sdkDemo(HttpServletRequest request) {
+		return "sdk";
 	}
 
 	@GetMapping("/loadBalancer")
@@ -115,13 +126,12 @@ public class SpanController extends BaseController {
 
 	@GetMapping("/error")
 	@ResponseBody
-	public String error() {
+	public String error() throws Exception {
 		Span spanCur = Span.current();
 		spanCur.setAttribute("springboot.error", "yes");
-		return "this is springboot error request ";
+		throw  new Exception("请求返回异常");
 	}	
-	
-	
+
 	/**
 	 * 身份认证服务demo
 	 * 
@@ -158,11 +168,6 @@ public class SpanController extends BaseController {
 		}
 		SpanContext spanContext = Span.current().getSpanContext();
 		return buildTraceUrl(spanContext.getTraceId());
-	}
-
-	@GetMapping("/getTrace")
-	public String getTrace(String traceId) {
-		return "redirect:http://" + exporterHost + ":" + exporterUiPort + "/trace/" + traceId;
 	}
 
 }
