@@ -37,7 +37,7 @@ docker-compose -f /path/docker-compose-collector.yml  up -d
 ```
 <a name="Je6W1"></a>
 ### Mac
-Mac 用Docker Host 模式不支持的，请把 OpenTelemetry Collector、Jaeger 端口映射方式部署
+Mac 用Docker Host 模式不支持的，请把 OpenTelemetry Collector、Jaeger 端口映射方式部署<br />
 [There is no docker0 bridge on the host](https://docs.docker.com/desktop/networking/)<br />
 <a name="T6DHp"></a>
 ## 采样 Sampling
@@ -94,7 +94,9 @@ exporters:
 - 生效后: Collector 的日志控制台打印完整的上报链路结构
   ![span.jpg](./assets/span.jpg)
 
- 
+## 更多Collector 插件的用法
+- filterprocessor：[使用案例](./rules/README.md)
+
 ### 开启日志 debug 模式
 #### Version 0.36 and above:
 Set the log level in the config `service::telemetry::logs`

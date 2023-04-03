@@ -1,24 +1,16 @@
-receivers:
-  otlp:
-    protocols:
-      grpc:
+<a name="wSh88"></a>
+# OpenTelemetry Collector Demo
+<a name="XGdFY"></a>
+## Introduction
+OpenTelemetry Collector 插件介绍
 
-exporters:
-  prometheus:
-    endpoint: "0.0.0.0:8889"
-    const_labels:
-      label1: value1
-  ##设置exporters上报 collector 控制台信息
-  logging:
-    loglevel: "debug"
 
-  jaeger:
-    endpoint: 127.0.0.1:14250
-    tls:
-      insecure: true
 
+## Processor
+### filterprocessor
+- Collector 添加 `processors`
+```yaml
 processors:
-  batch:
   filter/jvmexpr:
     metrics:
       exclude:
@@ -40,12 +32,9 @@ processors:
         span_names:
           - resource.*
           - .*auth.*
-
-extensions:
-  health_check:
-  pprof:
-    endpoint: :1888
-
+```
+- Collector `pipelines` 添加 `processor: [filter/*]`,对应的filter在pipeline中顺序依次执行
+```yaml
 service:
   extensions: [pprof,health_check]
   pipelines:
@@ -57,7 +46,10 @@ service:
       receivers: [otlp]
       processors: [batch,filter/jvmexpr,filter/jvmstrict]
       exporters: [prometheus,logging]
-  ##设置 Collector log level
-  telemetry:
-    logs:
-      level: "info"
+```
+- 生效前: 
+  ![span.jpg](../assets/filter-prespan.png)
+  ![metric.jpg](../assets/filter-premetric.jpg)
+- 生效后: 
+  ![span.jpg](../assets/filter-span.png)
+  ![metric.jpg](../assets/filter-metric.png)
