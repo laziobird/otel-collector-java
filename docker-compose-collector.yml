@@ -34,6 +34,7 @@ services:
       ## 用最新collecotr版本 otel/opentelemetry-collector-contrib:0.74.0
       image: otel/opentelemetry-collector-contrib:0.74.0
       command: ["--config=/etc/otel-collector-config.yaml"]
+      ##在rules目录下提供更多Collector 插件使用示例
       volumes:
         - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
       ##ports:
