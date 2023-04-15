@@ -148,4 +148,12 @@ spec:
   ![java.jpg](../assets/resourcedetection-java.png)
 - 通过Otel Collector 控制台日志，看到通过`resourcedetection`自动关联应用程序的 K8s attributes,并保存到链路信息中:
   ![sidecar.jpg](../assets/resourcedetection-sidecar.png)
-注意: `resourcedetectionprocessor` 只支持Otel Collector的sidecar模式，如果你部署方式是`Daemonset mode`，可以用`k8sattributes processor`插件
+注意: `resourcedetectionprocessor` 只支持Otel Collector的`Sidecar`模式，如果你部署方式是`Daemonset `，可以用`k8sattributes processor`插件
+
+## Processor
+### k8sattributesprocessor
+k8sattributesprocessor:可以在 K8s `Daemonset` 模式下很方便自动关联 service 对应的 K8s attrbutes 信息
+- 插件介绍：
+https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/k8sattributesprocessor
+- 插件实现原理图和Demo
+https://opentelemetry.io/blog/2022/k8s-metadata/#using-k8sattributes-processor
