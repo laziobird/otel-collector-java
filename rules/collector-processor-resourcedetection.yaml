@@ -1,0 +1,26 @@
+receivers:
+  jaeger:
+    protocols:
+      thrift_compact:
+
+processors:
+  resourcedetection:
+    detectors: [env]
+    timeout: 2s
+    override: false
+
+exporters:
+  ##设置exporters上报 collector 控制台信息
+  logging:
+    loglevel: "debug"
+
+service:
+  pipelines:
+    traces:
+      receivers: [jaeger]
+      processors: [resourcedetection]
+      exporters: [logging]
+  ##设置 Collector log level
+  telemetry:
+    logs:
+      level: "debug"
