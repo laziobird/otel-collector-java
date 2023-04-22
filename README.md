@@ -36,6 +36,8 @@ docker-compose -f /path/docker-compose-collector.yml  down
 docker-compose -f /path/docker-compose-collector.yml  up -d
 ```
 <a name="Je6W1"></a>
+### Windows
+具体看这个Issue： [windows系统无法对docker容器进行端口映射的问题](https://github.com/laziobird/otel-collector-java/issues/1) 
 ### Mac
 Mac 用Docker Host 模式不支持的，请把 OpenTelemetry Collector、Jaeger 端口映射方式部署<br />
 [There is no docker0 bridge on the host](https://docs.docker.com/desktop/networking/)<br />
